@@ -58,7 +58,7 @@ from collections import deque
 #  # TRACE: n=70, position 7 (the number 7) -> "Lucky" because str(7) contains '7'
 def solve_m1(n):
     result = []
-    for i in range(1, 70):
+    for i in range(1,n+1):
         if '7' in str(i):
             result.append("Lucky")
         elif i % 15 == 0:
@@ -256,8 +256,32 @@ def solve_m7(a, b):
 #  # TWIST: ____________________________________________________________
 #  # TRACE: for "(<)>", the parens are ____ ; '<' count=__ , '>' count=__
 def solve_c1(s):
-# your code here   
- pass
+    # TWIST: <> just need matching TOTAL counts anywhere, no nesting; ()[]{} still need a real stack
+    stack = []
+    lt_count = 0
+    gt_count = 0
+    for ch in s:
+        if ch == '(' or ch == '[' or ch == '{':
+            stack.append(ch)
+        elif ch == ')':
+            if len(stack) == 0 or stack[-1] != '(':
+                return False
+            stack.pop()
+        elif ch == ']':
+            if len(stack) == 0 or stack[-1] != '[':
+                return False
+            stack.pop()
+        elif ch == '}':
+            if len(stack) == 0 or stack[-1] != '{':
+                return False
+            stack.pop()
+        elif ch == '<':
+            lt_count += 1
+        elif ch == '>':
+            gt_count += 1
+    # TRACE: for "(<)>", the parens are balanced; '<' count=1, '>' count=1
+    return len(stack) == 0 and lt_count == gt_count  
+pass
  
  
 # ════════════════════════════════════════════════════════════════════════════
@@ -333,8 +357,19 @@ results = [("A","B","B"),("A","C","C"),("A","B","A"),
 #  # TWIST: ____________________________________________________________
 #  # TRACE: the '=' field sums the integers to its right: __ + __ + __ = ____
 def solve_c4(line):
-   # your code here  
- pass
+    # TWIST: '=' field sums only the integers to its RIGHT, not the whole line; quoted commas are literal
+    fields, current, in_quotes = [], "", False
+    for ch in line:
+        if ch == '"': in_quotes = not in_quotes
+        elif ch == ',' and not in_quotes: fields.append(current); current = ""
+        else: current += ch
+    fields.append(current)
+    for i in range(len(fields)):
+        if fields[i].startswith('='):
+            fields[i] = str(sum(int(v) for v in fields[i+1:] if v.isdigit()))
+    # TRACE: the '=' field sums the integers to its right: 10+20+30 = 60
+    return fields
+pass
  
  
 # ════════════════════════════════════════════════════════════════════════════
