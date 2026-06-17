@@ -172,19 +172,8 @@ pass
 #  # TWIST: ____________________________________________________________
 #  # TRACE: counts are go=__ , stop=__ ; winner chosen because ________
 def solve_m5(sentence):
-   WordsInSentence = sentence.lower().split()
-   MaxCount = 0
-   WordIndex = 0
-   for word in range(len(WordsInSentence)):
-    Wcount = 0
-    for j in range(len(WordsInSentence)):
-        if WordsInSentence[word] == WordsInSentence[j]:
-            Wcount += 1
-            if Wcount > MaxCount:
-                MaxCount = Wcount
-                WordIndex = word
-    return WordsInSentence[WordIndex]
-pass
+   
+ pass
     
  
 # ════════════════════════════════════════════════════════════════════════════
@@ -252,7 +241,7 @@ def solve_m7(a, b):
             temp_list2.append(temp_list[i])
             
     return temp_list2
-    pass
+pass
   
 # ════════════════════════════════════════════════════════════════════════════
 #  COMPLEX 1 — "Brackets + Loose Angles"
@@ -267,32 +256,8 @@ def solve_m7(a, b):
 #  # TWIST: ____________________________________________________________
 #  # TRACE: for "(<)>", the parens are ____ ; '<' count=__ , '>' count=__
 def solve_c1(s):
-    # TWIST: <> just need matching TOTAL counts anywhere, no nesting; ()[]{} still need a real stack
-    stack = []
-    lt_count = 0
-    gt_count = 0
-    for ch in s:
-        if ch == '(' or ch == '[' or ch == '{':
-            stack.append(ch)
-        elif ch == ')':
-            if len(stack) == 0 or stack[-1] != '(':
-                return False
-            stack.pop()
-        elif ch == ']':
-            if len(stack) == 0 or stack[-1] != '[':
-                return False
-            stack.pop()
-        elif ch == '}':
-            if len(stack) == 0 or stack[-1] != '{':
-                return False
-            stack.pop()
-        elif ch == '<':
-            lt_count += 1
-        elif ch == '>':
-            gt_count += 1
-    # TRACE: for "(<)>", the parens are balanced; '<' count=1, '>' count=1
-    return len(stack) == 0 and lt_count == gt_count  
-pass
+  
+ pass
  
  
 # ════════════════════════════════════════════════════════════════════════════
@@ -334,24 +299,11 @@ def solve_c2(txns):
 #  #TRACE: A loses match 1 (streak=1) then match 2 (streak=2) -> A is eliminated
 def solve_c3(teams, results):
     
-    streak = {t: 0 for t in teams}
-    eliminated = set()
-    for a, b, w in results:
-        if a in eliminated or b in eliminated:
-            continue
-        loser = a if w == b else b
-        streak[w] = 0
-        streak[loser] += 1
-        if streak[loser] >= 2:
-            eliminated.add(loser)
     
-    return sorted([t for t in teams if t not in eliminated])
-pass
+ pass
 
 
-teams = ["A","B","C"]
-results = [("A","B","B"),("A","C","C"),("A","B","A"),
-            ("B","C","C"),("B","C","C")]
+
  
  
 # ════════════════════════════════════════════════════════════════════════════
@@ -368,19 +320,8 @@ results = [("A","B","B"),("A","C","C"),("A","B","A"),
 #  # TWIST: ____________________________________________________________
 #  # TRACE: the '=' field sums the integers to its right: __ + __ + __ = ____
 def solve_c4(line):
-    # TWIST: '=' field sums only the integers to its RIGHT, not the whole line; quoted commas are literal
-    fields, current, in_quotes = [], "", False
-    for ch in line:
-        if ch == '"': in_quotes = not in_quotes
-        elif ch == ',' and not in_quotes: fields.append(current); current = ""
-        else: current += ch
-    fields.append(current)
-    for i in range(len(fields)):
-        if fields[i].startswith('='):
-            fields[i] = str(sum(int(v) for v in fields[i+1:] if v.isdigit()))
-    # TRACE: the '=' field sums the integers to its right: 10+20+30 = 60
-    return fields
-pass
+
+ pass
  
  
 # ════════════════════════════════════════════════════════════════════════════
