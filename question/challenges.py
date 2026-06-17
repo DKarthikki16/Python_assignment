@@ -172,9 +172,20 @@ pass
 #  # TWIST: ____________________________________________________________
 #  # TRACE: counts are go=__ , stop=__ ; winner chosen because ________
 def solve_m5(sentence):
-  # your code here
-  pass
- 
+   WordsInSentence = sentence.lower().split()
+   MaxCount = 0
+   WordIndex = 0
+   for word in range(len(WordsInSentence)):
+    Wcount = 0
+    for j in range(len(WordsInSentence)):
+        if WordsInSentence[word] == WordsInSentence[j]:
+            Wcount += 1
+            if Wcount > MaxCount:
+                MaxCount = Wcount
+                WordIndex = word
+    return WordsInSentence[WordIndex]
+pass
+    
  
 # ════════════════════════════════════════════════════════════════════════════
 #  MEDIUM 6 — "Circle Count with Boundary Penalty"
