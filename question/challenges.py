@@ -11,7 +11,7 @@
  
 ┌──────────────────────────────────────────────────────────────────────────┐
 │  ⚠  HOW THIS IS GRADED — READ THIS FIRST                                 │
-│                                                                          │
+│                                                                        │
 │  Every problem below is a DELIBERATE VARIATION of a famous, well-known   │
 │  problem. The variation (the "twist") is written in plain English but    │
 │  is EASY TO MISS if you skim. Read each problem slowly.                  │
@@ -54,10 +54,9 @@ from collections import deque
 #  Canary input: n = 70   (look closely at 7, 15, 17, 70)
 #  Visible self-check below uses n = 5.
 #
-#  # TWIST: ____________________________________________________________
-#  # TRACE: for n=70, position 7 (the number 7) -> "______"  because ____
+# # TWIST: any number containing the digit 7 (not divisible by 7) becomes "Lucky", checked before Fizz/Buzz
+#  # TRACE: n=70, position 7 (the number 7) -> "Lucky" because str(7) contains '7'
 def solve_m1(n):
-    # TWIST: any number containing the digit 7 (not divisible by 7) becomes "Lucky", checked before Fizz/Buzz
     result = []
     for i in range(1, 70):
         if '7' in str(i):
@@ -70,7 +69,7 @@ def solve_m1(n):
             result.append("Buzz")
         else:
             result.append(str(i))
-    # TRACE: n=70, position 7 (the number 7) -> "Lucky" because str(7) contains '7'
+   
     return result
 pass
  
@@ -109,10 +108,10 @@ pass
 #
 #  Canary input: [1, 2, 3, 2, 1, 4]
 #
-#  # TWIST: ____________________________________________________________
-#  # TRACE: value 1 last appears at index ___ , so it ends up ________
+# # TWIST: dedupe but keep each value's LAST occurrence position, not its first
+#  # TRACE: value 1 last appears at index 4, so it ends up after the 3
 def solve_m3(items):
-    # TWIST: dedupe but keep each value's LAST occurrence position, not its first
+    
     last_index = {}
     for i, v in enumerate(items):
         last_index[v] = i
@@ -122,7 +121,6 @@ def solve_m3(items):
         if last_index[v] == i and v not in seen:
             result.append(v)
             seen.add(v)
-    # TRACE: value 1 last appears at index 4, so it ends up after the 3
     return result
 pass
  
@@ -174,7 +172,7 @@ pass
 #  # TWIST: ____________________________________________________________
 #  # TRACE: counts are go=__ , stop=__ ; winner chosen because ________
 def solve_m5(sentence):
-
+  # your code here
   pass
  
  
@@ -190,10 +188,10 @@ def solve_m5(sentence):
 #
 #  Canary input: points=[(0,0),(3,0),(5,0),(0,5),(4,3)], r=5
 #
-#  # TWIST: ____________________________________________________________
-#  # TRACE: point (5,0) gives d2=__ vs r*r=__ , so it scores ____
+#  # TWIST: points exactly on the boundary score -1 (penalty), not 0 — only strictly outside is ignored
+# # TRACE: point (5,0) gives d2=25 vs r*r=25, so it scores -1
 def solve_m6(points, r):
-    # TWIST: points exactly on the boundary score -1 (penalty), not 0 — only strictly outside is ignored
+    
     score = 0
     r2 = r*r
     for (x,y) in points:
@@ -202,7 +200,7 @@ def solve_m6(points, r):
             score += 1
         elif d2 == r2:
             score -= 1
-    # TRACE: point (5,0) gives d2=25 vs r*r=25, so it scores -1
+    
     return score
 pass
 
@@ -258,7 +256,7 @@ def solve_m7(a, b):
 #  # TWIST: ____________________________________________________________
 #  # TRACE: for "(<)>", the parens are ____ ; '<' count=__ , '>' count=__
 def solve_c1(s):
-    
+# your code here   
  pass
  
  
@@ -279,7 +277,7 @@ def solve_c1(s):
 #  # TWIST: ____________________________________________________________
 #  # TRACE: first sell matches __ units from the 10@5 lot -> profit += ____
 def solve_c2(txns):
-
+  # your code here
  pass
  
  
@@ -297,10 +295,10 @@ def solve_c2(txns):
 #    results = [("A","B","B"),("A","C","C"),("A","B","A"),
 #               ("B","C","C"),("B","C","C")]
 #
-#  # TWIST: ____________________________________________________________
-#  # TRACE: A loses match 1 (streak=1) then match 2 (streak=__) -> A is ____
+#  # TWIST: elimination needs two CONSECUTIVE losses; a win in between resets the streak to 0
+#  #TRACE: A loses match 1 (streak=1) then match 2 (streak=2) -> A is eliminated
 def solve_c3(teams, results):
-    # TWIST: elimination needs two CONSECUTIVE losses; a win in between resets the streak to 0
+    
     streak = {t: 0 for t in teams}
     eliminated = set()
     for a, b, w in results:
@@ -311,7 +309,7 @@ def solve_c3(teams, results):
         streak[loser] += 1
         if streak[loser] >= 2:
             eliminated.add(loser)
-    # TRACE: A loses match 1 (streak=1) then match 2 (streak=2) -> A is eliminated
+    
     return sorted([t for t in teams if t not in eliminated])
 pass
 
@@ -335,7 +333,7 @@ results = [("A","B","B"),("A","C","C"),("A","B","A"),
 #  # TWIST: ____________________________________________________________
 #  # TRACE: the '=' field sums the integers to its right: __ + __ + __ = ____
 def solve_c4(line):
-   
+   # your code here  
  pass
  
  
@@ -353,7 +351,7 @@ def solve_c4(line):
 #  # TWIST: ____________________________________________________________
 #  # TRACE: stepping onto 'b' at (0,2) teleports you to ______
 def solve_c5(grid):
-  
+   # your code here 
  pass
  
  
@@ -375,7 +373,7 @@ def solve_c5(grid):
 #  # TWIST: ____________________________________________________________
 #  # TRACE: round 1 counts are A=__ B=__ C=__ ; tie -> eliminate ____
 def solve_c6(ballots, candidates):
-
+  # your code here
  pass
  
  
@@ -430,7 +428,7 @@ pass
 #  # TWIST: ____________________________________________________________
 #  # TRACE: the unique start is the item with no predecessor, which is ____
 def solve_c8(pairs):
-    
+  # your code here    
  pass
  
  
